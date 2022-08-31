@@ -1,3 +1,4 @@
+import 'package:app/views/login_page.dart';
 import 'package:app/views/page_1.dart';
 import 'package:app/views/page_2.dart';
 import 'package:app/views/page_3.dart';
@@ -5,11 +6,23 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
+  initialLocation: '/',
+  redirect: (state) {
+    final isLoggingIn = state.location == '/login';
+    if (!loggedIn && !isLoggingIn) return '/login';
+    if (loggedIn && isLoggingIn) return '/';
+    return null;
+  },
   routes: <GoRoute>[
     GoRoute(
       name: 'page1',
       path: '/',
       builder: (BuildContext context, GoRouterState state) => const Page1(),
+    ),
+    GoRoute(
+      name: 'login',
+      path: '/login',
+      builder: (BuildContext context, GoRouterState state) => const LoginPage(),
     ),
     GoRoute(
       name: 'page2',
@@ -29,7 +42,6 @@ final router = GoRouter(
       },
     ),
   ],
-  initialLocation: '/',
   errorBuilder: (context, state) => ErrorScreen(state.error!),
 );
 
