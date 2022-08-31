@@ -9,8 +9,17 @@ class Page1 extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Page 1'),
       ),
-      body: const Center(
-        child: Text('Page 1'),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Page 1'),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('Go to Page 2'),
+            ),
+          ],
+        ),
       ),
     );
   }

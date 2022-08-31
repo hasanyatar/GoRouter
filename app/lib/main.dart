@@ -1,3 +1,4 @@
+import 'package:app/routing/routing.dart';
 import 'package:app/views/page_1.dart';
 import 'package:flutter/material.dart';
 
@@ -11,12 +12,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Page1(),
+    return MaterialApp.router(
+      routeInformationProvider: router.routeInformationProvider,
+      routeInformationParser: router.routeInformationParser,
+      routerDelegate: router.routerDelegate,
+      title: 'Go Route example',
     );
   }
 }
