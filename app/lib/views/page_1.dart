@@ -19,7 +19,7 @@ class Page1 extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 const text = "I'm coming from Page 1";
-                context.go('/page2/$text');
+                GoRouter.of(context).push('/page2/$text');
               },
               child: const Text('Go to Page 2'),
             ),
