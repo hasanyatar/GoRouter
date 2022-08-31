@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Page2 extends StatelessWidget {
   const Page2({Key? key, required this.text}) : super(key: key);
@@ -14,9 +15,15 @@ class Page2 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Page 2', style: Theme.of(context).textTheme.headline4),
-            // ignore: prefer_const_constructors
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text('text : $text', style: Theme.of(context).textTheme.headline5),
+            ElevatedButton(
+              onPressed: () {
+                const text = "I'm coming from Page 2";
+                GoRouter.of(context).push('/page3', extra: {'text': text});
+              },
+              child: const Text('Go to Page 3'),
+            ),
           ],
         ),
       ),

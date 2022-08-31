@@ -1,5 +1,6 @@
 import 'package:app/views/page_1.dart';
 import 'package:app/views/page_2.dart';
+import 'package:app/views/page_3.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,6 +16,16 @@ final router = GoRouter(
       path: '/page2/:text',
       builder: (BuildContext context, GoRouterState state) {
         return Page2(text: state.params['text']!);
+      },
+    ),
+    //* page3 with Extra params
+    GoRoute(
+      name: 'page3',
+      path: '/page3',
+      builder: (BuildContext context, GoRouterState state) {
+        final params = state.extra! as Map<String, Object>;
+        final text = params['text'] as String;
+        return Page3(text: text);
       },
     ),
   ],
