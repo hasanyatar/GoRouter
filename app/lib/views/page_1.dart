@@ -18,7 +18,8 @@ class Page1 extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                context.go('/page2');
+                const text = "I'm coming from Page 1";
+                context.go('/page2/$text');
               },
               child: const Text('Go to Page 2'),
             ),

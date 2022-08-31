@@ -12,9 +12,9 @@ final router = GoRouter(
     ),
     GoRoute(
       name: 'page2',
-      path: '/page2',
+      path: '/page2/:text',
       builder: (BuildContext context, GoRouterState state) {
-        return const Page2();
+        return Page2(text: state.params['text']!);
       },
     ),
   ],
