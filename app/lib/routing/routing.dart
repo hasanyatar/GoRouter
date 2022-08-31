@@ -8,9 +8,7 @@ final router = GoRouter(
     GoRoute(
       name: 'page1',
       path: '/',
-      builder: (BuildContext context, GoRouterState state) {
-        return const Page1();
-      },
+      builder: (BuildContext context, GoRouterState state) => const Page1(),
     ),
     GoRoute(
       name: 'page2',
@@ -20,4 +18,29 @@ final router = GoRouter(
       },
     ),
   ],
+  initialLocation: '/',
+  errorBuilder: (context, state) => ErrorScreen(state.error!),
 );
+
+// * ERROR SCREEN
+class ErrorScreen extends StatelessWidget {
+  const ErrorScreen(this.error, {Key? key}) : super(key: key);
+  final Exception error;
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(title: const Text('My "Page Not Found" Screen')),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SelectableText(error.toString()),
+              TextButton(
+                onPressed: () => context.go('/'),
+                child: const Text('Home'),
+              ),
+            ],
+          ),
+        ),
+      );
+}
