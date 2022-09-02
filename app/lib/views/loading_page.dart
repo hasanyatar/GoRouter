@@ -1,9 +1,4 @@
-import 'package:app/provider/app_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
 class LoadingPage extends StatelessWidget {
   const LoadingPage({Key? key}) : super(key: key);
@@ -14,8 +9,8 @@ class LoadingPage extends StatelessWidget {
         body: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Center(child: CircularProgressIndicator()),
+        children: const [
+          Center(child: CircularProgressIndicator()),
         ],
       ),
     ));

@@ -28,7 +28,7 @@ final router = GoRouter(
     GoRoute(
         name: 'homePage',
         path: '/',
-        builder: (BuildContext context, GoRouterState state) => Page1(),
+        builder: (BuildContext context, GoRouterState state) => const Page1(),
         routes: <GoRoute>[
           GoRoute(
             name: 'page2',
