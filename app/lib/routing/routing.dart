@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 final router = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/', // * initial route path
+  debugLogDiagnostics: true, // * enable debug log
+  refreshListenable: AppState.instance, // * refresh when appState changes.
   redirect: (state) {
     final isLoggingIn = state.location == '/login';
     if (!loggedIn && !isLoggingIn) return '/login';
