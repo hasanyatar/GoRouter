@@ -1,4 +1,5 @@
 import 'package:app/provider/app_state.dart';
+import 'package:app/views/loading_page.dart';
 import 'package:app/views/login_page.dart';
 import 'package:app/views/page_1.dart';
 import 'package:app/views/page_2.dart';
@@ -53,21 +54,9 @@ final router = GoRouter(
       builder: (BuildContext context, GoRouterState state) => const LoginPage(),
     ),
     GoRoute(
-      name: 'page2',
-      path: '/page2/:text',
-      builder: (BuildContext context, GoRouterState state) {
-        return Page2(text: state.params['text']!);
-      },
-    ),
-    //* page3 with Extra params
-    GoRoute(
-      name: 'page3',
-      path: '/page3',
-      builder: (BuildContext context, GoRouterState state) {
-        final params = state.extra! as Map<String, Object>;
-        final text = params['text'] as String;
-        return Page3(text: text);
-      },
+      name: 'loading',
+      path: '/loading',
+      builder: (BuildContext context, GoRouterState state) => const LoadingPage(),
     ),
   ],
   errorBuilder: (context, state) => ErrorScreen(state.error!),
@@ -94,4 +83,16 @@ class ErrorScreen extends StatelessWidget {
           ),
         ),
       );
+}
+
+extension GoRouterLoading on GoRouter {
+  void loadingStart() {
+    push('/loading');
+  }
+
+  void loadingFinish() {
+    if (canPop()) {
+      if (location == '/loading') pop();
+    }
+  }
 }
