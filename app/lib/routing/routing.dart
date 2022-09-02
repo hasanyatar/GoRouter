@@ -1,3 +1,4 @@
+import 'package:app/provider/app_state.dart';
 import 'package:app/views/login_page.dart';
 import 'package:app/views/page_1.dart';
 import 'package:app/views/page_2.dart';
@@ -9,18 +10,43 @@ final router = GoRouter(
   initialLocation: '/', // * initial route path
   debugLogDiagnostics: true, // * enable debug log
   refreshListenable: AppState.instance, // * refresh when appState changes.
+
   redirect: (state) {
     final isLoggingIn = state.location == '/login';
-    if (!loggedIn && !isLoggingIn) return '/login';
-    if (loggedIn && isLoggingIn) return '/';
+
+    // * anywhere route the logout button is pressed, it will redirect to the login page
+    if (!AppState.instance.isLoggedIn && !isLoggingIn) return '/login';
+
+    //* if user is logged inside login page will be redirected to home page
+    if (AppState.instance.isLoggedIn && isLoggingIn) return '/';
+
     return null;
   },
+
   routes: <GoRoute>[
     GoRoute(
-      name: 'page1',
-      path: '/',
-      builder: (BuildContext context, GoRouterState state) => const Page1(),
-    ),
+        name: 'homePage',
+        path: '/',
+        builder: (BuildContext context, GoRouterState state) => Page1(),
+        routes: <GoRoute>[
+          GoRoute(
+            name: 'page2',
+            path: 'page2/:text',
+            builder: (BuildContext context, GoRouterState state) {
+              return Page2(text: state.params['text']!);
+            },
+          ),
+          //* page3 with Extra params
+          GoRoute(
+            name: 'page3',
+            path: 'page3',
+            builder: (BuildContext context, GoRouterState state) {
+              final params = state.extra! as Map<String, Object>;
+              final text = params['text'] as String;
+              return Page3(text: text);
+            },
+          ),
+        ]),
     GoRoute(
       name: 'login',
       path: '/login',

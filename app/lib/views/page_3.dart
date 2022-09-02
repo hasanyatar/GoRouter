@@ -1,4 +1,6 @@
+import 'package:app/provider/app_state.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Page3 extends StatelessWidget {
   const Page3({Key? key, required this.text}) : super(key: key);
@@ -16,6 +18,14 @@ class Page3 extends StatelessWidget {
             Text('Page 3', style: Theme.of(context).textTheme.headline4),
             const SizedBox(height: 20),
             Text('text : $text', style: Theme.of(context).textTheme.headline5),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // * when token is expired or user logged out
+                context.read<AppState>().setLoggedIn(false);
+              },
+              child: const Text('Logout'),
+            ),
           ],
         ),
       ),

@@ -1,6 +1,8 @@
+import 'package:app/provider/app_state.dart';
 import 'package:app/views/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class Page2 extends StatelessWidget {
   const Page2({Key? key, required this.text}) : super(key: key);
@@ -21,7 +23,6 @@ class Page2 extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 const text = "I'm coming from Page 2";
-                loggedIn = false; // * when token is expired or user logged out
                 GoRouter.of(context).push('/page3', extra: {'text': text});
               },
               child: const Text('Go to Page 3'),
