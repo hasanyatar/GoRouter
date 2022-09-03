@@ -1,5 +1,6 @@
 import 'package:app/provider/app_state.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class Page3 extends StatelessWidget {
@@ -25,6 +26,13 @@ class Page3 extends StatelessWidget {
                 context.read<AppState>().setLoggedIn(false);
               },
               child: const Text('Logout'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                GoRouter.of(context).push('/page4');
+              },
+              child: const Text('Go to Page 4'),
             ),
           ],
         ),

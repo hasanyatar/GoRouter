@@ -4,6 +4,7 @@ import 'package:app/views/login_page.dart';
 import 'package:app/views/page_1.dart';
 import 'package:app/views/page_2.dart';
 import 'package:app/views/page_3.dart';
+import 'package:app/views/bottom_navigation/page_4.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -45,6 +46,13 @@ final router = GoRouter(
               final params = state.extra! as Map<String, Object>;
               final text = params['text'] as String;
               return Page3(text: text);
+            },
+          ),
+          GoRoute(
+            name: 'bottom_navigation_routers',
+            path: 'page4',
+            builder: (BuildContext context, GoRouterState state) {
+              return const Page4();
             },
           ),
         ]),
